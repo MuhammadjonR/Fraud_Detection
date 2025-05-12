@@ -44,6 +44,7 @@ st.markdown("""
     .info-text {
         font-size: 1rem;
     }
+     
 </style>
 """, unsafe_allow_html=True)
 
@@ -183,7 +184,6 @@ def display_result(analysis_result):
     if predicted_fraud:
         st.markdown('<div class="result-box fraud">', unsafe_allow_html=True)
         st.error("⚠️ **Potential Fraud Detected!**")
-        st.write(f"Fraud Score: {fraud_score:.4f}")
         st.write("This transaction has been flagged as potentially fraudulent and should be reviewed.")
         st.markdown('</div>', unsafe_allow_html=True)
     else:
@@ -220,11 +220,11 @@ st.markdown('<h1 class="main-header">Credit Card Fraud Detection System</h1>', u
 
 # Create sidebar for additional information
 with st.sidebar:
-    st.image("img/O_logo.png", width=100)
+    st.image("img\O_logo.png", width=100)
     st.markdown("## About")
     st.info(
-        "This application uses rule-based analysis to detect potentially fraudulent "
-        "credit card transactions based on customer ID and transaction amount."
+        "This application uses AI and Data science models to detect potentially " 
+        "fraudulent credit card transactions based on customer ID and transaction amount."
     )
     
     st.markdown("## How It Works")
@@ -235,11 +235,7 @@ with st.sidebar:
         "4. The system will analyze the data and provide a fraud assessment"
     )
     
-    st.markdown("## Disclaimer")
-    st.warning(
-        "This is a demonstration application. In a real-world scenario, "
-        "many more factors would be used to determine fraud probability."
-    )
+
 
 # Create two columns for the input form
 col1, col2 = st.columns(2)
@@ -249,10 +245,10 @@ with st.container():
     st.markdown('<h2 class="sub-header">Transaction Details</h2>', unsafe_allow_html=True)
     
     with col1:
-        customer_id = st.number_input("Customer ID", min_value=1, value=1042, help="Enter the customer's unique identifier")
+        customer_id = st.number_input("Customer ID", min_value=0, help="Enter the customer's unique identifier")
     
     with col2:
-        amount = st.number_input("Transaction Amount ($)", min_value=0.01, value=150.00, step=10.0, format="%.2f", help="Enter the transaction amount")
+        amount = st.number_input("Transaction Amount ($)", min_value=0.00, step=10.0, format="%.2f", help="Enter the transaction amount")
 
     # Additional transaction details that could be collected in a real app
    
@@ -320,13 +316,30 @@ if st.button("Check Transaction", type="primary", use_container_width=True):
             # Show a recent transactions table for context (mock data)
             st.markdown("")
            
+footer_style = """
+    <style>
+        footer {
+            visibility: hidden;
+        }
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+        }
+    </style>
+    <div class="footer">
+        © 2025 OrbiDefence
+    </div>
+"""
 
+# Inject CSS with Streamlit
+st.markdown(footer_style, unsafe_allow_html=True)
 
    
 
-# Footer
-st.markdown("---")
-st.markdown(
-        "<p style='text-align: center;'>© 2025 OrbiDefence</p>",
-    unsafe_allow_html=True
-)
+
