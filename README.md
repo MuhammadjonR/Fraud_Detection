@@ -1,6 +1,6 @@
 # Credit Card Fraud Detection 
 
-A simple Streamlit web application that uses your anomaly detection model to identify fraudulent credit card transactions based on user ID and transaction amount.
+Web application that uses your anomaly detection model to identify fraudulent credit card transactions based on user ID and transaction amount.
 
 ## Features
 
